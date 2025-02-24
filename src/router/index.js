@@ -5,6 +5,7 @@ import PaymentsPage from "@/pages/PaymentsPage.vue";
 import ContactsPage from "@/pages/ContactsPage.vue";
 import ProductsList from "@/pages/ProductsList.vue";
 import CartPage from "@/pages/CartPage.vue";
+import EditProductPage from "@/pages/EditProductPage.vue";
 
 
 const routes = [
@@ -37,6 +38,11 @@ const routes = [
         path: '/cart',
         name: 'cart',
         component: CartPage
+    },
+    {
+        path: '/shop/:category/edit/:id?',
+        name: 'edit',
+        component: EditProductPage
     }
 ]
 

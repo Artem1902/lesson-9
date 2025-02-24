@@ -24,8 +24,17 @@ export default {
         this.addToCart(currentProduct);
         alert('Товар доданий в кошик!')
       } else {
-          this.changeQuantityProd({id: this.product.id, quantity: 1})
+        this.changeQuantityProd({
+          id: this.product.id,
+          quantity: 1
+        })
       }
+    },
+    onEditProduct() {
+      this.$router.push({
+        name: 'edit',
+        params: {id: this.product.id}
+      })
     }
   }
 }
@@ -40,9 +49,14 @@ export default {
         <h3 class="title">{{ product.name }}</h3>
         <div class="bottom">
           <p class="price">${{ product.price }}</p>
-          <button @click='onAddProduct' class="btn">
-            Придбати
-          </button>
+          <div class="btns">
+            <button @click='onEditProduct' class="btn">
+              Змінити
+            </button>
+            <button @click='onAddProduct' class="btn">
+              Придбати
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -62,12 +76,19 @@ export default {
   align-items: center;
 }
 
+.btns{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
 .btn {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 10px;
   color: darkslategray;
   cursor: pointer;

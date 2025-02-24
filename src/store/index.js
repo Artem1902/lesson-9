@@ -54,6 +54,55 @@ export default createStore({
         },
         deleteAllProductsFromCart(state) {
             state.cartList = []
+        },
+        updateProduct(state, payload) {
+            switch (payload.category) {
+                case 'phones': {
+                    const prodIndex = state.phonesList.findIndex((prod) => prod.id === payload.productData.id)
+                    state.phonesList[prodIndex] = {...payload.productData}
+                    break;
+                }
+                case 'laptops': {
+                    const prodIndex = state.laptopsList.findIndex((prod) => prod.id === payload.productData.id)
+                    state.laptopsList[prodIndex] = {...payload.productData}
+                    break;
+                }
+                case 'watches': {
+                    const prodIndex = state.watchesList.findIndex((prod) => prod.id === payload.productData.id)
+                    state.watchesList[prodIndex] = {...payload.productData}
+                    break;
+                }
+                case 'ipads': {
+                    const prodIndex = state.ipadsList.findIndex((prod) => prod.id === payload.productData.id)
+                    state.ipadsList[prodIndex] = {...payload.productData}
+                    break;
+                }
+                default:
+                    console.log('Unknown category: ' + this.categoryValue);
+            }
+
+        },
+        createNewProduct(state, payload) {
+            switch (payload.category) {
+                case 'phones': {
+                    state.phonesList.push(payload.productData);
+                    break;
+                }
+                case 'laptops': {
+                    state.laptopsList.push(payload.productData);
+                    break;
+                }
+                case 'watches': {
+                    state.watchesList.push(payload.productData);
+                    break;
+                }
+                case 'ipads': {
+                    state.ipadsList.push(payload.productData);
+                    break;
+                }
+                default:
+                    console.log('Unknown category: ' + this.categoryValue);
+            }
         }
     },
     actions: {
@@ -84,6 +133,12 @@ export default createStore({
         },
         deleteAllProductsFromCart({commit}) {
             commit('deleteAllProductsFromCart')
+        },
+        updateProduct({commit}, payload) {
+            commit('updateProduct', payload)
+        },
+        createNewProduct({commit}, payload) {
+            commit('createNewProduct', payload)
         }
     },
 })

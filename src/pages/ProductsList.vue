@@ -32,7 +32,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['loadPhonesList', 'loadIpadsList', 'loadWatchesList', "loadLaptopsList"])
+    ...mapActions(['loadPhonesList', 'loadIpadsList', 'loadWatchesList', "loadLaptopsList"]),
+    addNewProduct(){
+      this.$router.push({name:'edit'});
+    }
   },
   mounted() {
     switch (this.categoryValue) {
@@ -57,6 +60,7 @@ export default {
 
 <template>
   <div>
+    <button @click = 'addNewProduct' class="btn">Додати товар</button>
     <div class="body">
       <product-card
           v-for="product in currentCategoryProductList"
@@ -75,7 +79,17 @@ export default {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  margin-bottom: 20px;
+  margin: 20px 0;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: darkslategray;
+  cursor: pointer;
 }
 
 </style>
